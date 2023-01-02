@@ -4,7 +4,9 @@ const Course = db.courses;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
+  console.log(req, res);
   if(!req.body.name) {
+    console.log('bad request');
     res.status(400).send({
       message: 'Content empty'
     });
@@ -13,10 +15,10 @@ exports.create = (req, res) => {
 
   const course = {
     id: req.body.id
-    ,department: req.bodu.department
+    ,department: req.body.department
     ,courseNumber: req.body.courseNumber
     ,level: req.body.level
-    ,hours: req.body.hours
+    ,housr: req.body.housr
     ,name: req.body.name
     ,description: req.body.description
   };
@@ -30,6 +32,7 @@ exports.create = (req, res) => {
 }
 
 exports.findAll = (req, res) => {
+  console.log('finding all');
   const title = req.query.title;
   var condition = title ? { title: { [Op.like]: `%${title}%` }} : null;
   var orderBy = ['courseNumber'];
@@ -61,6 +64,8 @@ exports.findOne = (req, res) => {
 
 exports.update = (req, res) => {
   const id = req.params.id;
+  console.log(req.params);
+  console.log(req.body);
   Course.update(req.body, { where: {id: id} })
     .then(num => {
       if(num == 1){
@@ -70,7 +75,7 @@ exports.update = (req, res) => {
       }
     })
     .catch(e => {
-      res.setatus(500).send({
+      res.status(500).send({
         message: e.message || `error updating course (id: ${id})`
       })
     })

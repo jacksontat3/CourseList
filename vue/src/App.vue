@@ -1,15 +1,14 @@
 <template>
   <div id="app">
-    course list application
-    <router-link :to="{name : 'course-list'}">course</router-link>
+    app view
+    <div>
+      <router-view />
+    </div>
   </div>
 </template>
 
 <script>
   export default {
-    name: "app",
-    mounted() {
-      console.log('app mounted successfully');
-    }
-  }
+    name: "app"
+  };
 </script>
