@@ -18,7 +18,7 @@ exports.create = (req, res) => {
     ,department: req.body.department
     ,courseNumber: req.body.courseNumber
     ,level: req.body.level
-    ,housr: req.body.housr
+    ,hours: req.body.hours
     ,name: req.body.name
     ,description: req.body.description
   };
